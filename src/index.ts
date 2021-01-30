@@ -8,4 +8,8 @@ import { App } from "./app";
 PIXIPlugin.registerPIXI(PIXI);
 gsap.registerPlugin(PIXIPlugin);
 
-const game = container.get<App>(TYPES.App);
+const Layout2D = container.get<App>(TYPES.App);
+export {
+    Layout2D
+}
+

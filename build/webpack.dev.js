@@ -1,9 +1,11 @@
 const path = require('path')
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
     index: './test/src/index.ts'
   },
+  devtool: 'inline-source-map',
   mode: 'development',
   module: {
     rules: [
@@ -28,6 +30,8 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, '../test'),
     compress: true,
-    port: 7777
-  }
+    port: 1024
+  },
+  plugins: [    new CopyPlugin([{ from: "src/assets", to: "assets" }])
+  ]
 }
