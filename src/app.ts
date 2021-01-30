@@ -28,9 +28,41 @@ export class App {
   async load() {
     document.body.appendChild(this.renderer.view);
     await loadAssets();
-    // Ticker.shared.add(this.tick);
+    Ticker.shared.add(this.tick);
     this.ui.draw(this.stage);
-    setTimeout(this.tick, 100)
     this.onResize();
+    this.onMove();
+    this.onWheel();
+  }
+  onMove() {
+    let dragFlag = false;
+    let startPoint: any;
+    this.renderer.plugins.interaction.on("mousedown", (event: PIXI.InteractionEvent) => {
+      dragFlag = true
+      startPoint = { x: event.data.global.x, y: event.data.global.y }
+    })
+
+    this.renderer.plugins.interaction.on("mousemove", (event: PIXI.InteractionEvent) => {
+      if (dragFlag) {
+        const dx = event.data.global.x - startPoint.x;
+        const dy = event.data.global.y - startPoint.y;
+        this.stage.position.x += dx;
+        this.stage.position.y += dy;
+        startPoint = { x: event.data.global.x, y: event.data.global.y }
+      }
+    })
+
+    this.renderer.plugins.interaction.on("mouseup", (event: PIXI.InteractionEvent) => {
+      dragFlag = false
+    })
+  }
+  onWheel() {
+    window.addEventListener("mousewheel", (event: any) => {
+      const step = event.wheelDelta > 0 ? 0.01 : -0.01
+      if (this.stage.scale.x + step >= 0.01) {
+        this.stage.scale.x += step
+        this.stage.scale.y += step
+      }
+    })
   }
 }

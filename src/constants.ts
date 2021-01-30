@@ -1,6 +1,6 @@
-export const CELL_SIZE = 25;
-export const GRID_WIDTH = 250;
-export const GRID_HEIGHT = 500;
+export const CELL_SIZE = 50;
+export const GRID_WIDTH = 2000;
+export const GRID_HEIGHT = 2000;
 export const GRID_ROWS = GRID_HEIGHT / CELL_SIZE;
 export const GRID_COLS = GRID_WIDTH / CELL_SIZE;
 export const GRID_ORIGIN = GRID_COLS / 2;
