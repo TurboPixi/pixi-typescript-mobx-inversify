@@ -19,20 +19,21 @@ export class App {
   }
   private onResize = () => {
     this.renderer.resize(window.innerWidth, window.innerHeight);
-    this.stage.x = window.innerWidth / 2 - this.stage.width / 2;
-    this.stage.y = window.innerHeight / 2 - this.stage.height / 2;
+    // this.stage.x = window.innerWidth / 2 - this.stage.width / 2;
+    // this.stage.y = window.innerHeight / 2 - this.stage.height / 2;
   };
   private tick = () => {
     this.renderer.render(this.stage);
+
   };
   async load() {
     document.body.appendChild(this.renderer.view);
-    await loadAssets();
+    // await loadAssets();
     Ticker.shared.add(this.tick);
-    this.ui.draw(this.stage);
-    this.onResize();
-    this.onMove();
-    this.onWheel();
+    // this.ui.draw(this.stage);
+    // this.onResize();
+    // this.onMove();
+    // this.onWheel();
   }
   onMove() {
     let dragFlag = false;
